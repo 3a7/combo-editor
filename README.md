@@ -9,7 +9,7 @@ Telegram channel
 https://t.me/A7_courses
 
 
-نزلت برنامج سريع 
+برنامج سريع 
 Combo Editor V1
 
 فيه 8 مودز 
