@@ -1,7 +1,7 @@
 from time import sleep
 from random import shuffle
 from os import system
-import colorama,re
+import colorama,re,sys
 colorama.init(autoreset=True)
 clear = lambda: system("cls")
 clear()
@@ -36,13 +36,19 @@ def ask():
     choice = input('''\n   Choose an option:
 [1] Combo Slicer               (slices from line to another with randomize)
 [2] Combo Slicer               (slices from line to another without randomize)
-[3] Combo Cleaner              (removes bad, empty and dublicated lines for E:P combos)
+[3] Combo Cleaner              (removes bad, empty and dublicated lines for combo lists)
 [4] Dublicate Remover          (with randomizing)
 [5] Custom domain              (@yahoo only - @gmail only ...)
 [6] Combo Seperator            (keep mails, passwords, IP\'s or phone numbers only)
 [7] Combo Flipper              (flip for example from E:P to P:E)
 [8] Custom                     (choose lines with certain regex)
-[9] Exit
+[9] Capture remover            (remove the capture from the Hits and keeps only mail:pass or user:pass to recheck)
+
+   For dorking 
+[10] Steal pagetypes from dorks    (Get all pagetypes from dorks file)
+[11] Steal pageformats from dorks  (Get all pageformats from dorks file)
+
+[12] Exit
         >>  ''')
     return choice
 
@@ -102,10 +108,9 @@ while True:
             except:
                 pass
             try:
-                if '@' in com[0] and '.' in com[0]:
-                    if len(com) == 2:
-                        com = com[0]+':'+com[1]
-                        clean.add(com)
+              if len(com) == 2 and com[1] != '' and com[0] != '':
+                    com = com[0]+':'+com[1]
+                    clean.add(com)
             except:
                 pass
         
@@ -272,19 +277,75 @@ while True:
         sleep(5)
         clear()
 
+    elif choice == '9':
+        file = input('Enter combo file name >> ')
+        if not file.endswith('.txt'):
+            file = file+'.txt'
+        ff = open(file,'r',encoding='utf-8')
+
+        combo = []
+        for line in ff.readlines():
+            try:
+                comb = line.split(' ')[0]
+                combo.append(comb)
+            except:
+                pass
+
+        ff.close()
+        with open(file,'w',encoding='utf-8') as f:
+            for i in combo:
+                f.write(i+'\n')
+        print('Done removing hits capture from '+str(file)+' file!!')
+        print('There is '+str(len(list(combo)))+' hits without capture saved in '+str(file))
+        sleep(5)
+        clear()
+
+    elif choice == '10':     #   Pagetypes
+        dfile = input('Enter dorks file name >> ')
+        if not dfile.endswith('.txt'):
+            dfile = dfile+'.txt'
+
+        pagetypes = set()
+        with open(dfile,'r',encoding='utf-8') as f:
+            for dork in f.readlines():
+                pagetype = re.findall(r'\?.*?\=',dork)
+                try:
+                    pagetypes.add(pagetype[0])
+                except:
+                    pass
+
+        with open('pagetypes.txt','w',encoding='utf-8') as ff:
+            for i in list(pagetypes):
+                ff.write(i[1:-1]+'\n')
+        print('Done scraping all pagetypes from '+str(dfile)+' file!!')
+        print('There is '+str(len(list(pagetypes)))+' pagetype saved in pagetypes.txt')
+        sleep(5)
+        clear()
+
+    elif choice == '11':
+        f = input('Enter dorks file name >> ')
+        if not f.endswith('.txt'):
+            f = f+'.txt'
+
+        pageformats = set()
+        with open(f,'r',encoding='utf-8') as file:
+            for line in file.readlines():
+                try:
+                    pageformat = re.findall(r'\.[A-Za-z0-9]{,}\?',line.strip('\n'))[0]
+                    pageformats.add(str(pageformat))
+                except:
+                    pass
+
+        with open('pageformats.txt','w',encoding='utf-8') as c:
+            for i in list(pageformats):
+                c.write(i+'\n')
+
+        print('Done scraping all pageformats from '+str(f)+' file!!')
+        print('There is '+str(len(list(pageformats)))+' pageformats saved in pageformats.txt')
+        sleep(5)
+        clear()
+
     else:
         print('BYE! :)')
         sleep(5)
-        break
-
-
-
-            
-
-
-            
-        
-
-
-
-
+        sys.exit()
