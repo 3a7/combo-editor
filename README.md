@@ -11,7 +11,9 @@ https://t.me/A7_courses
 
   
 Combo Editor V1
- 
+![Capture](https://user-images.githubusercontent.com/58238467/146641421-b455a112-b18c-47a1-9faf-3a19f0982170.PNG)
+
+
 ## There is 11 different options
 
 **1**)  Combo Slicer         slices from line to another with randomize<br>
