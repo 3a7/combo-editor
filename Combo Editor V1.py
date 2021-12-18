@@ -17,22 +17,27 @@ print('''
               @A7.acc
 ''')
 
-file = input('Enter the combo file name >> ')
+file = str(input('Enter the combo file name >> '))
 if not file.endswith('.txt'):
     file = file+'.txt'
 
 combo = []
-try:
-    with open(file,'r',encoding='utf-8') as f:
-        for line in f.readlines():
-            combo.append(line.strip('\n'))
-except Exception as error:
-    print('[!] Error while openning '+file+' !')
-    print('Error message >> '+str(error))
-    sleep(7)
-    exit()
+
 
 def ask():
+    global combo,file
+    try:
+        file = file.name
+    except:
+        pass
+    try:
+        with open(str(file),'r') as f:
+            combo = f.read().splitlines()
+    except Exception as error:
+        print('[!] Error while openning '+str(file)+' !')
+        print('Error message >> '+str(error))
+        sleep(7)
+        sys.exit()
     choice = input('''\n   Choose an option:
 [1] Combo Slicer               (slices from line to another with randomize)
 [2] Combo Slicer               (slices from line to another without randomize)
@@ -56,14 +61,14 @@ while True:
     choice = ask()
     if choice == '1':
         fromy = int(input('FROM which line do you want to start? >>  '))
-        if fromy == '0':
-            fromy = '1'
+        if fromy == 0:
+            fromy = 1
         too = int(input('TO which line? >> '))
         lines = []
         i = 0
         for line in combo:
             if int(fromy) <= i <= int(too):
-                print(i)
+                # print(i)
                 lines.append(line)
             i += 1
 
@@ -81,8 +86,8 @@ while True:
 
     elif choice == '2':
         fromy = int(input('FROM which line do you want to start? >>  '))
-        if fromy == '0':
-            fromy = '1'
+        if fromy == 0:
+            fromy = 1
         too = int(input('TO which line? >> '))
         lines = []
         i = 0
@@ -109,7 +114,8 @@ while True:
                 pass
             try:
               if len(com) == 2 and com[1] != '' and com[0] != '':
-                    com = com[0]+':'+com[1]
+                if com[0] != '!~!1' and com[1] != '!~!1':
+                    com = com[0].strip(r'{NewLine}')+':'+com[1].strip(r'{NewLine}')
                     clean.add(com)
             except:
                 pass
@@ -349,3 +355,4 @@ while True:
         print('BYE! :)')
         sleep(5)
         sys.exit()
+
