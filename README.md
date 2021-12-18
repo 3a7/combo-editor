@@ -1,8 +1,8 @@
 # combo-editor
-Combo Editor v1 edits your combo lists :)
+Combo Editor v1 edits your combo lists and scrapes or removes certain credentails in a E:P or U:P combo-list, IP's list, Phone Numbers or Passwords
 
 تحديث 18/12/2021
-Updated 18/12/2021
+Updated 
 
 Add me on Instagram 
 https://www.instagram.com/a7.acc/
@@ -14,7 +14,7 @@ https://t.me/A7_courses
 برنامج سريع 
 Combo Editor V1
 
-فيه *8* مودز 
+فيه 11 مودز 
 
 المود الاول 1 يقصلك الأسطر في ملف التكست من سطر معين انت تحدده الى سطر معين انت تحدده مع بس يخليهم عشوائيين
 
