@@ -1,7 +1,8 @@
 # combo-editor
 Combo Editor v1 edits your combo lists :)
-تحديث 10/6/2021
 
+تحديث 18/12/2021
+Updated 18/12/2021
 
 Add me on Instagram 
 https://www.instagram.com/a7.acc/
@@ -13,7 +14,7 @@ https://t.me/A7_courses
 برنامج سريع 
 Combo Editor V1
 
-فيه |8| مودز 
+فيه *8* مودز 
 
 المود الاول 1 يقصلك الأسطر في ملف التكست من سطر معين انت تحدده الى سطر معين انت تحدده مع بس يخليهم عشوائيين
 
